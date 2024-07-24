@@ -61,7 +61,7 @@ class InstallCommand extends Command
 
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/Vien', resource_path('js/Components/Vien'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/Pages', resource_path('js/Pages'));
-        copy(__DIR__ . '/../../stubs/inertia-vue/Authenticated.vue', base_path('js/Layouts/Authenticated.vue'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/Default/Authenticated.vue', base_path('js/Layouts/Authenticated.vue'));
 
         // Routes...
         copy(__DIR__ . '/../../stubs/inertia-vue/routes/web.php', base_path('routes/web.php'));
