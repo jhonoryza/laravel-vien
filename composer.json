@@ -1,0 +1,19 @@
+{
+    "name": "jhonoryza/laravel-vien",
+    "description": "laravel vue inertia component",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jhonoryza\\LaravelVien\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "fajar sidik priatna",
+            "email": "jardik.oryza@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
