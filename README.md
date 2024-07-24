@@ -34,7 +34,7 @@ more you can check in `stubs/inertia-vue/Vien` directory or `resources/js/Compon
 ## Installation
 
 ```bash
-composer require --dev jhonoryza/vien
+composer require --dev jhonoryza/laravel-vien
 ```
 
 install
