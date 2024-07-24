@@ -5,15 +5,28 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Jhonoryza\\LaravelVien\\": "src/"
+            "Jhonoryza\\Vien\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jhonoryza\\Vien\\VienServiceProvider"
+            ]
         }
     },
     "authors": [
         {
-            "name": "fajar sidik priatna",
+            "name": "fajar sp",
             "email": "jardik.oryza@gmail.com"
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0|^11.0"
+    },
+    "require-dev": {
+        "orchestra/testbench-core": "^8.0|^9.0"
+    }
 }
