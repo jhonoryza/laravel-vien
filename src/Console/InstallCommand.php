@@ -85,6 +85,10 @@ class InstallCommand extends Command
 
         $this->line('');
         $this->components->info('Vien scaffolding installed successfully.');
+
+        $this->components->info('Running migration.');
+        $this->runCommands(['composer dump-autoload', 'php artisan migrate --force']);
+
     }
 
     /**
