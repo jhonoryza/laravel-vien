@@ -61,15 +61,15 @@ class InstallCommand extends Command
 
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/Vien', resource_path('js/Components/Vien'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/Pages', resource_path('js/Pages'));
-        copy(__DIR__ . '/../../stubs/inertia-vue/Default/Authenticated.vue', base_path('js/Layouts/Authenticated.vue'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/Default/AuthenticatedLayout.vue', base_path('js/Layouts/AuthenticatedLayout.vue'));
 
         // Routes...
         copy(__DIR__ . '/../../stubs/inertia-vue/routes/web.php', base_path('routes/web.php'));
 
         // Tailwind / Vite...
         copy(__DIR__ . '/../../stubs/inertia-vue/Default/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../stubs/inertia-vue/Default/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__ . '/../../stubs/inertia-vue/Default/app.js', resource_path('js/app.js'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/Default/tailwind.config.js', base_path('tailwind.config.js'));
 
         $this->components->info('Installing and building Node dependencies.');
 
