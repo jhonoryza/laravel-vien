@@ -1,0 +1,17 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "binary_operator_spaces": {
+            "default": "align_single_space_minimal"
+        },
+        "concat_space": {
+            "spacing": "one"
+        },
+        "simplified_null_return": true,
+        "braces": false,
+        "new_with_braces": {
+            "anonymous_class": false,
+            "named_class": false
+        }
+    }
+}
