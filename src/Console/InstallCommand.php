@@ -38,12 +38,21 @@ class InstallCommand extends Command
             ] + $packages;
         });
 
+        // Models...
+        (new Filesystem)->ensureDirectoryExists(app_path('Models'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/Models/Setting.php', app_path('Models/Setting.php'));
+
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/Controllers', app_path('Http/Controllers'));
 
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Middleware'));
         copy(__DIR__ . '/../../stubs/inertia-vue/Middleware/HandleInertiaRequests.php', app_path('Http/Middleware/HandleInertiaRequests.php'));
+
+        // Database...
+        copy(__DIR__ . '/../../stubs/inertia-vue/database/migrations/0001_01_01_000003_create_settings_tables.php', database_path('migrations/0001_01_01_000003_create_settings_tables.php'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/database/seeders/DatabaseSeeder.php', database_path('seeders/DatabaseSeeder.php'));
+        copy(__DIR__ . '/../../stubs/inertia-vue/database/factories/SettingFactory.php', database_path('factories/SettingFactory.php'));
 
         // Components + Pages...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Components/Vien'));
