@@ -16,6 +16,7 @@ this package is a starter kit for laravel breeze with stack inertia vue
 this package provides laravel inertia vue components
 
 ## Available Component
+
 - Table
 - Pagination
 - Sidebar
@@ -40,20 +41,43 @@ more you can check in `stubs/inertia-vue/Vien` directory or `resources/js/Compon
 </p>
 
 ## Requirement
+
 - PHP >= 8.2
 - Laravel >= 10
 - Laravel [Breeze Stack Inertia Vue](https://laravel.com/docs/11.x/starter-kits#breeze-and-inertia)
 
-## Installation
+## Getting Started
+
+package installation
 
 ```bash
 composer require --dev jhonoryza/laravel-vien
 ```
 
-install
+vien installation
 
 ```bash
 php artisan vien:install
+```
+
+resource generator
+
+before using this generator, make sure you have already migration and models
+
+```bash
+php artisan vien:generate table-name
+```
+
+optional to publish config
+
+```bash
+php artisan vendor:publish --tag='vien-config'
+```
+
+optional to publish generator stubs
+
+```bash
+php artisan vendor:publish --tag='vien-stubs'
 ```
 
 this will copy all vien component scaffolding
