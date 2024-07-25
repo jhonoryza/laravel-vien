@@ -9,16 +9,18 @@ use Jhonoryza\Vien\Concern\ReplaceResourceKeywords;
 
 class ControllerGenerator implements FileGenerator
 {
-    use ReplaceResourceKeywords;
     use CommonGeneratorTrait;
+    use ReplaceResourceKeywords;
 
     protected string $filename;
+
     protected string $path;
+
     protected string $stubFilename = 'controller.stub';
 
     public function __construct(public Filesystem $filesystem, public string $tableName)
     {
-        $this->path = base_path(config('laravel-vien.generator.controller.path'));
+        $this->path     = base_path(config('laravel-vien.generator.controller.path'));
         $this->filename = $this->generateFilename();
     }
 
@@ -30,7 +32,7 @@ class ControllerGenerator implements FileGenerator
     public function getContent(): string
     {
         return $this->manipulateContent(
-            (string)file_get_contents($this->getStubPath($this->stubFilename))
+            (string) file_get_contents($this->getStubPath($this->stubFilename))
         );
     }
 
@@ -41,16 +43,18 @@ class ControllerGenerator implements FileGenerator
                 'ControllerNamespace',
                 'ModelNamespace',
                 '//Model Attributes',
+                '//Builder Attributes',
                 '//Model Columns',
                 'implode_select',
                 '//Query Filters',
                 '//Implode Filters',
-                '//Validation Rules'
+                '//Validation Rules',
             ],
             [
                 config('laravel-vien.generator.controller.namespace'),
                 config('laravel-vien.generator.model.namespace'),
                 $this->getModelAttribute(),
+                $this->getModelAttribute(true),
                 $this->getModelColumns(),
                 $this->getImplodeSelect(),
                 $this->getQueryFilters(),
@@ -59,6 +63,7 @@ class ControllerGenerator implements FileGenerator
             ],
             $content
         );
+
         return $this->replaceKeywords($content);
     }
 }

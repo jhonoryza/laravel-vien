@@ -9,7 +9,7 @@ use Jhonoryza\Vien\Console\Concern\CommonConsoleTrait;
 class InstallCommand extends Command
 {
     use CommonConsoleTrait;
-    
+
     protected $signature = 'vien:install';
 
     protected $description = 'Install the Vien controllers and resources';

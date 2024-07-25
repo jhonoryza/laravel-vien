@@ -28,8 +28,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `Big Title Dummies` replacement value.
-     *
-     * @return string
      */
     protected function getBigTitleDummies(): string
     {
@@ -40,8 +38,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `Big Title Dummy` replacement value.
-     *
-     * @return string
      */
     protected function getBigTitleDummy(): string
     {
@@ -52,8 +48,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `camelDummies` replacement value.
-     *
-     * @return string
      */
     protected function getCamelDummies(): string
     {
@@ -62,8 +56,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `camelDummy` replacement value.
-     *
-     * @return string
      */
     protected function getCamelDummy(): string
     {
@@ -72,8 +64,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `kebab-dummies` replacement value.
-     *
-     * @return string
      */
     protected function getKebabDummies(): string
     {
@@ -82,8 +72,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `kebab-dummy` replacement value.
-     *
-     * @return string
      */
     protected function getKebabDummy(): string
     {
@@ -92,8 +80,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the plural table name.
-     *
-     * @return string
      */
     private function getPluralName(): string
     {
@@ -102,8 +88,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the singular table name.
-     *
-     * @return string
      */
     private function getSingularName(): string
     {
@@ -112,8 +96,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `small title dummies` replacement value.
-     *
-     * @return string
      */
     protected function getSmallTitleDummies(): string
     {
@@ -122,8 +104,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `small title dummy` replacement value.
-     *
-     * @return string
      */
     protected function getSmallTitleDummy(): string
     {
@@ -132,8 +112,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `snake_dummies` replacement value.
-     *
-     * @return string
      */
     protected function getSnakeDummies(): string
     {
@@ -142,8 +120,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get the `snake_dummy` replacement value.
-     *
-     * @return string
      */
     protected function getSnakeDummy(): string
     {
@@ -152,8 +128,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get `StudlyDummies` replacement value.
-     *
-     * @return string
      */
     protected function getStudlyDummies(): string
     {
@@ -162,8 +136,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Get `StudlyDummy` replacement value.
-     *
-     * @return string
      */
     protected function getStudlyDummy(): string
     {
@@ -172,10 +144,6 @@ trait ReplaceResourceKeywords
 
     /**
      * Replace all dummy keywords in the given content with the real values.
-     *
-     * @param string $content
-     *
-     * @return string
      */
     public function replaceKeywords(string $content): string
     {
@@ -198,5 +166,4 @@ trait ReplaceResourceKeywords
             $content
         );
     }
-
 }

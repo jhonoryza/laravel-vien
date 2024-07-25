@@ -46,7 +46,7 @@ class StudlyDummiesController extends Controller
 
         $data = $paginated
             ->through(fn ($camelDummy) => [
-//Model Attributes
+//Builder Attributes
             ])
             ->withQueryString();
 

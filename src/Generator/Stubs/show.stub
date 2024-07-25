@@ -1,0 +1,57 @@
+<script setup>
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import Container from "@/Components/Vien/Container.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { IconChevronRight } from "@tabler/icons-vue";
+import { Head } from "@inertiajs/vue3";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+
+const props = defineProps({
+  camelDummy: {
+    type: Object,
+  },
+});
+</script>
+<template>
+  <Head title="Big Title Dummy Detail" />
+
+  <AuthenticatedLayout>
+    <Container>
+      <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+        <section class="max-w-xl">
+          <header>
+            <div
+              class="flex gap-2 items-center text-sm font-bold text-zinc-600 dark:text-zinc-100"
+            >
+              <h2
+                class="hover:text-zinc-900 hover:cursor-pointer"
+                @click="$inertia.get(route('dashboard'))"
+              >
+                Home
+              </h2>
+              <IconChevronRight class="size-4" />
+              <h2
+                class="hover:text-zinc-900 hover:cursor-pointer"
+                @click="$inertia.get(route('snake_dummies.index'))"
+              >
+                Big Title Dummies
+              </h2>
+              <IconChevronRight class="size-4" />
+              <h2>Big Title Dummy {{ camelDummy.id }}</h2>
+            </div>
+          </header>
+
+          <div class="mt-6 space-y-6">
+//View Form
+            <div class="flex items-center gap-4">
+              <PrimaryButton @click="$inertia.get(route('snake_dummies.edit', camelDummy.id))"
+                >Edit
+              </PrimaryButton>
+            </div>
+          </div>
+        </section>
+      </div>
+    </Container>
+  </AuthenticatedLayout>
+</template>
