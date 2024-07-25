@@ -68,6 +68,24 @@ before using this generator, make sure you have already migration and models
 php artisan vien:generate table-name
 ```
 
+After successfully generating the resource above, then adjust
+
+`resources/js/Components/Vien/Sidebar.vue` file to add a `new navigation menu`,
+
+for example:
+
+```json
+{
+  id: 4,
+  title: "Post",
+  routeName: "posts",
+  component: "Post",
+  icon: IconHome
+}
+```
+
+`id value must be unique`, then run `npm run dev` to rebuild
+
 optional to publish config
 
 ```bash

@@ -45,12 +45,12 @@ class RouteGenerator implements FileGenerator
 
         $resource   = "Route::resource('{$this->getSnakeDummies()}', {$this->getStudlyDummies()}Controller::class);";
         $bulkDelete = "Route::delete('{$this->getSnakeDummies()}/bulk-delete',[{$this->getStudlyDummies()}Controller::class,'bulkDestroy'])->name('{$this->getSnakeDummies()}.bulk-delete');";
-        if (! Str::contains($content, $resource)) {
-            $content .= PHP_EOL . $resource;
-        }
-
         if (! Str::contains($content, $bulkDelete)) {
             $content .= PHP_EOL . $bulkDelete;
+        }
+
+        if (! Str::contains($content, $resource)) {
+            $content .= PHP_EOL . $resource;
         }
 
         return $content;

@@ -45,6 +45,15 @@ class GeneratorCommand extends Command
         $this->generateFile(new CreateGenerator($this->filesystem, $tableName));
 
         $this->runCommands(['./vendor/bin/pint .']);
+        if (file_exists(base_path('pnpm-lock.yaml'))) {
+            $this->runCommands(['pnpm run build']);
+        } elseif (file_exists(base_path('yarn.lock'))) {
+            $this->runCommands(['yarn run build']);
+        } elseif (file_exists(base_path('bun.lockb'))) {
+            $this->runCommands(['bun run build']);
+        } else {
+            $this->runCommands(['npm run build']);
+        }
 
         $this->composer->dumpAutoloads();
     }
