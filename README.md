@@ -1,4 +1,15 @@
 <h1 align="center">Laravel Vien</h1>
+<p align="center">
+    <a href="https://packagist.org/packages/jhonoryza/laravel-vien">
+        <img src="https://poser.pugx.org/jhonoryza/laravel-vien/d/total.svg" alt="Total Downloads">
+    </a>
+    <a href="https://packagist.org/packages/jhonoryza/laravel-vien">
+        <img src="https://poser.pugx.org/jhonoryza/laravel-vien/v/stable.svg" alt="Latest Stable Version">
+    </a>
+    <a href="https://packagist.org/packages/jhonoryza/laravel-vien">
+        <img src="https://poser.pugx.org/jhonoryza/laravel-vien/license.svg" alt="License">
+    </a>
+</p>
 
 this package is a starter kit for laravel breeze with stack inertia vue
 
