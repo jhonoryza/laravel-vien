@@ -50,7 +50,7 @@ class StudlyDummiesController extends Controller
             ])
             ->withQueryString();
 
-        return Inertia::render('Setting/Index', [
+        return Inertia::render('StudlyDummy/Index', [
             'table' => [
                 'snake_dummies' => $data,
                 'pageOptions'   => $this->pageOptions,
@@ -91,7 +91,7 @@ class StudlyDummiesController extends Controller
     public function show(StudlyDummy $camelDummy): Response
     {
         return Inertia::render('StudlyDummy/Show', [
-            'snake_dummy' => [
+            'camelDummy' => [
 //Model Attributes
             ],
         ]);
@@ -100,7 +100,7 @@ class StudlyDummiesController extends Controller
     public function edit(StudlyDummy $camelDummy): Response
     {
         return Inertia::render('StudlyDummy/Edit', [
-            'snake_dummy' => [
+            'camelDummy' => [
 //Model Attributes
             ],
         ]);
