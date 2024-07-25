@@ -1,0 +1,152 @@
+<?php
+
+namespace ControllerNamespace;
+
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
+use Inertia\Response;
+use Illuminate\Http\RedirectResponse;
+use ModelNamespace\StudlyDummy;
+
+class StudlyDummiesController extends Controller
+{
+    protected array $pageOptions = [5, 10, 25, 50, 100];
+
+    public function index(): Response
+    {
+        $limit = request('limit', 10);
+        $page  = request('page', 1);
+
+        $builder = DB::table('snake_dummies')
+            ->select('id', implode_select 'created_at', 'updated_at')
+            ->when(request('filter.search'), function (Builder $query, $search) {
+                $query->where(function (Builder $query) use ($search) {
+                    /**
+                     * implement your own search query
+                     * example: $query->where('key', 'like', "%{$search}%");
+                     */
+                    $query;
+                });
+            })
+//Query Filters
+            ->when(
+                request('sort'),
+                fn (Builder $query, $sort) => $query->orderBy($sort[0] == '-' ? ltrim($sort, '-') : $sort, $sort[0] == '-' ? 'desc' : 'asc'),
+                fn (Builder $query)        => $query->orderBy('id', 'asc'),
+            );
+
+        /** @var Collection $paginated */
+        $paginated = $builder
+            ->clone()
+            ->paginate(perPage: $limit, page: $page);
+        // ->cursorPaginate(perPage: $limit, cursorName: 'page');
+
+        $data = $paginated
+            ->through(fn ($camelDummy) => [
+//Builder Attributes
+            ])
+            ->withQueryString();
+
+        return Inertia::render('Setting/Index', [
+            'table' => [
+                'snake_dummies' => $data,
+                'pageOptions'   => $this->pageOptions,
+                'limit'         => $data->perPage(),
+                'allIds'        => method_exists($paginated, 'total') ? $builder->select('id')->pluck('id')->toArray() : [],
+                'columns'       => [
+//Model Columns
+                ],
+                'filters'     => [
+//Implode Filters
+                    'search'
+                ],
+                'defaultSort' => '-created_at',
+            ],
+        ]);
+    }
+
+    public function create(): Response
+    {
+        return Inertia::render('StudlyDummy/Create');
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+//Validation Rules
+                ]);
+        $model = StudlyDummy::query()->create($data);
+
+        session()->flash('message', [
+            'message' => "Create small title dummy {$model->id} success.",
+            'type'    => 'success',
+        ]);
+
+        return redirect()->route('snake_dummies.show', $model->id);
+    }
+
+    public function show(StudlyDummy $camelDummy): Response
+    {
+        return Inertia::render('StudlyDummy/Show', [
+            'snake_dummy' => [
+//Model Attributes
+            ],
+        ]);
+    }
+
+    public function edit(StudlyDummy $camelDummy): Response
+    {
+        return Inertia::render('StudlyDummy/Edit', [
+            'snake_dummy' => [
+//Model Attributes
+            ],
+        ]);
+    }
+
+    public function update(Request $request, StudlyDummy $camelDummy): RedirectResponse
+    {
+        $data = $request->validate([
+//Validation Rules
+                ]);
+        $camelDummy->fill($data)->save();
+
+        session()->flash('message', [
+            'message' => 'Update small title dummy success.',
+            'type'    => 'success',
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function destroy(StudlyDummy $camelDummy): RedirectResponse
+    {
+        $camelDummy->delete();
+
+        session()->flash('message', [
+            'message' => "delete small title dummy id {$camelDummy->id} success.",
+            'type'    => 'success',
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function bulkDestroy(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'ids'   => 'required|array',
+            'ids.*' => 'required|exists:snake_dummies,id',
+        ]);
+        StudlyDummy::query()->whereIn('id', $request->ids)->delete();
+
+        $idsString = collect($request->ids)->implode(',');
+        session()->flash('message', [
+            'message' => "Bulk Delete small title dummy id {$idsString} success.",
+            'type'    => 'success',
+        ]);
+
+        return redirect()->back();
+    }
+}
