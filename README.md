@@ -1,6 +1,8 @@
 <h1 align="center">Laravel Vien</h1>
 
-This package provides laravel vue inertia components
+this package is a starter kit for laravel breeze with stack inertia vue
+
+this package provides laravel inertia vue components
 
 ## Available Component
 - Table
@@ -44,6 +46,8 @@ php artisan vien:install
 ```
 
 this will copy all vien component scaffolding
+
+after installed successfully you can remove this package from your dev requirement
 
 ### Security
 
