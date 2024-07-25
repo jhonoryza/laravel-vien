@@ -4,16 +4,12 @@ namespace Jhonoryza\Vien\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use RuntimeException;
-use Symfony\Component\Process\Process;
+use Jhonoryza\Vien\Console\Concern\CommonConsoleTrait;
 
 class InstallCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+    use CommonConsoleTrait;
+    
     protected $signature = 'vien:install';
 
     protected $description = 'Install the Vien controllers and resources';
@@ -23,12 +19,7 @@ class InstallCommand extends Command
         $this->installInertiaVueStack();
     }
 
-    /**
-     * Install the Inertia Vue Breeze stack.
-     *
-     * @return int|null
-     */
-    protected function installInertiaVueStack()
+    protected function installInertiaVueStack(): void
     {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -88,58 +79,5 @@ class InstallCommand extends Command
 
         $this->components->info('Running migration.');
         $this->runCommands(['composer dump-autoload', 'php artisan migrate --force']);
-
-    }
-
-    /**
-     * Update the "package.json" file.
-     *
-     * @param  bool  $dev
-     * @return void
-     */
-    protected static function updateNodePackages(callable $callback, $dev = true)
-    {
-        if (! file_exists(base_path('package.json'))) {
-            return;
-        }
-
-        $configurationKey = $dev ? 'devDependencies' : 'dependencies';
-
-        $packages = json_decode(file_get_contents(base_path('package.json')), true);
-
-        $packages[$configurationKey] = $callback(
-            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : [],
-            $configurationKey
-        );
-
-        ksort($packages[$configurationKey]);
-
-        file_put_contents(
-            base_path('package.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
-        );
-    }
-
-    /**
-     * Run the given commands.
-     *
-     * @param  array  $commands
-     * @return void
-     */
-    protected function runCommands($commands)
-    {
-        $process = Process::fromShellCommandline(implode(' && ', $commands), null, null, null, null);
-
-        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
-            try {
-                $process->setTty(true);
-            } catch (RuntimeException $e) {
-                $this->output->writeln('  <bg=yellow;fg=black> WARN </> ' . $e->getMessage() . PHP_EOL);
-            }
-        }
-
-        $process->run(function ($type, $line) {
-            $this->output->write('    ' . $line);
-        });
     }
 }
