@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from "vue";
-import { IconHome, IconSettings, IconUsers } from "@tabler/icons-vue";
+import {ref} from "vue";
+import {IconHome, IconSettings, IconUsers} from "@tabler/icons-vue";
 import SideBarMenuItem from "./SideBarMenuItem.vue";
-import { usePage } from "@inertiajs/vue3";
+import {usePage} from "@inertiajs/vue3";
 
 /**
  * id harus unique
@@ -47,6 +47,7 @@ const menuItems = ref([
         routeName: "profile.edit",
         component: "Profile/Edit",
         icon: null,
+        class: "xl:hidden",
       },
       {
         id: 32,
@@ -55,6 +56,7 @@ const menuItems = ref([
         component: "",
         icon: null,
         method: "post",
+        class: "xl:hidden",
       },
     ],
   },
@@ -63,15 +65,15 @@ const menuItems = ref([
 
 <template>
   <aside
-    class="absolute top-0 left-0 z-40 w-64 h-screen transition-transform"
-    aria-label="Sidebar"
+      class="absolute top-0 left-0 z-40 w-64 h-screen transition-transform"
+      aria-label="Sidebar"
   >
     <div
-      class="h-full px-3 overflow-y-auto bg-white dark:bg-gray-800 text-sm dark:text-white"
+        class="h-full px-3 overflow-y-auto bg-white dark:bg-gray-800 text-sm dark:text-white"
     >
       <ul class="font-medium flex flex-col">
         <li v-for="item in menuItems" :key="item.id">
-          <SideBarMenuItem :item="item" />
+          <SideBarMenuItem :item="item"/>
         </li>
       </ul>
     </div>
