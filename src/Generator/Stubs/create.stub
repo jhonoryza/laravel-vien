@@ -10,8 +10,6 @@ import { ref } from "vue";
 import { IconChevronRight } from "@tabler/icons-vue";
 import { Head } from "@inertiajs/vue3";
 
-const passwordInput = ref(null);
-
 const form = useForm({
 //UseForm Create
 });

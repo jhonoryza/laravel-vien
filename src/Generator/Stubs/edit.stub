@@ -16,8 +16,6 @@ const props = defineProps({
   },
 });
 
-const passwordInput = ref(null);
-
 const form = useForm({
 //UseForm Edit
 });
