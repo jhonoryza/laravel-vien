@@ -5,6 +5,7 @@ namespace Jhonoryza\Vien;
 use Illuminate\Support\ServiceProvider;
 use Jhonoryza\Vien\Console\GeneratorCommand;
 use Jhonoryza\Vien\Console\InstallCommand;
+use Jhonoryza\Vien\Console\UpdateCommand;
 
 class VienServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,7 @@ class VienServiceProvider extends ServiceProvider
         $this->commands([
             InstallCommand::class,
             GeneratorCommand::class,
+            UpdateCommand::class,
         ]);
     }
 
@@ -38,6 +40,7 @@ class VienServiceProvider extends ServiceProvider
         return [
             InstallCommand::class,
             GeneratorCommand::class,
+            UpdateCommand::class,
         ];
     }
 }

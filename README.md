@@ -60,7 +60,13 @@ vien installation
 php artisan vien:install
 ```
 
-resource generator
+vien components update (optional)
+
+```bash
+php artisan vien:install
+```
+
+resource generator (optional)
 
 before using this generator, make sure you have already migration and models
 
