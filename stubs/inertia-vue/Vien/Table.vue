@@ -2,8 +2,8 @@
 import {
   IconDotsVertical,
   IconFilterFilled,
-  IconTableColumn,
   IconSearch,
+  IconTableColumn,
   IconX,
 } from "@tabler/icons-vue";
 import DeleteModal from "./DeleteModal.vue";
@@ -84,7 +84,7 @@ const {
   <Loading :loading="isLoading" />
   <!-- table container -->
   <div
-    class="mt-4 bg-white dark:bg-gray-800 dark:text-white border border-slate-300 rounded-lg overflow-hidden"
+    class="mt-4 bg-white dark:bg-gray-800 dark:text-white border border-slate-300 rounded-lg"
   >
     <!-- action, search dan filter -->
     <div class="flex items-center justify-between">
@@ -223,9 +223,7 @@ const {
             class="z-10 bg-white dark:bg-gray-800 dark:text-white w-1/2 absolute top-[85%] border border-slate-300 rounded-lg p-4"
           >
             <div class="flex flex-col flex-wrap gap-4 text-slate-500 text-sm">
-              <span class="font-semibold dark:text-gray-100"
-                >Toggle Column</span
-              >
+              <span class="font-semibold dark:text-gray-100">Toggle Column</span>
               <div class="flex flex-col gap-2 justify-between">
                 <div
                   v-for="column in columns"
@@ -312,10 +310,7 @@ const {
     <!-- end table title section -->
 
     <!-- table -->
-    <div
-      class="overflow-x-auto border-t border-slate-300"
-      v-if="items.data.length"
-    >
+    <div class="overflow-x-auto border-t border-slate-300" v-if="items.data.length">
       <table class="w-full table-auto text-left text-sm">
         <!-- table head -->
         <thead>
@@ -333,11 +328,7 @@ const {
               v-for="column in visibleColumns"
               :key="column.key"
               class="bg-slate-100 dark:bg-gray-800 dark:text-white px-4 py-2"
-              :class="
-                column.sortable
-                  ? 'hover:cursor-pointer hover:text-slate-500'
-                  : ''
-              "
+              :class="column.sortable ? 'hover:cursor-pointer hover:text-slate-500' : ''"
               @click="column.sortable ? sortColumn(column.key) : ''"
             >
               <span> {{ column.label }}</span>
@@ -360,11 +351,7 @@ const {
 
         <!-- table body -->
         <tbody class="bg-white dark:bg-gray-800 dark:text-white">
-          <tr
-            class="border-t border-slate-300"
-            v-for="item in items.data"
-            :key="item.id"
-          >
+          <tr class="border-t border-slate-300" v-for="item in items.data" :key="item.id">
             <!-- checkbox -->
             <td class="whitespace-nowrap px-4 py-2 font-medium">
               <input
@@ -420,10 +407,7 @@ const {
       class="border-t border-slate-300 dark:border-gray-300 flex justify-between items-center px-4 py-2 dark:text-white"
       v-if="items.data.length"
     >
-      <span
-        class="text-sm hidden md:block"
-        v-if="items.total && items.from && items.to"
-      >
+      <span class="text-sm hidden md:block" v-if="items.total && items.from && items.to">
         Showing {{ items.from }} to {{ items.to }} of {{ items.total }} entries
       </span>
       <span
