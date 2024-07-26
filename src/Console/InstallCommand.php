@@ -24,8 +24,11 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@tabler/icons-vue' => '^3.7.0',
-                'vue3-click-away'   => '^1.2.4',
+                '@tabler/icons-vue'       => '^3.7.0',
+                'vue3-click-away'         => '^1.2.4',
+                '@headlessui/vue'         => '^1.7.22',
+                'flatpickr'               => '^4.6.13',
+                'vue-flatpickr-component' => '^11.0.5',
             ] + $packages;
         });
 
