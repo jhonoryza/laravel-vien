@@ -185,7 +185,10 @@ trait CommonGeneratorTrait
         ';
         $attribute = '';
         foreach ($columns as $column) {
-            $col = sprintf($template, $column, Str::studly($column), $column, $column);
+            $title = Str::title(
+                str_replace('_', ' ', Str::snake(Str::singular($column)))
+            );
+            $col = sprintf($template, $column, $title, $column, $column);
             $attribute .= $this->indent($col, 3);
         }
 
@@ -216,7 +219,10 @@ trait CommonGeneratorTrait
         ';
         $attribute = '';
         foreach ($columns as $column) {
-            $col = sprintf($template, $column, Str::studly($column), $column, $column, $column, $column);
+            $title = Str::title(
+                str_replace('_', ' ', Str::snake(Str::singular($column)))
+            );
+            $col = sprintf($template, $column, $title, $column, $column, $column, $column);
             $attribute .= $this->indent($col, 3);
         }
 
@@ -285,7 +291,10 @@ trait CommonGeneratorTrait
         ';
         $attribute = '';
         foreach ($columns as $column) {
-            $col = sprintf($template, $column, Str::studly($column), $column, $column, $column, $column);
+            $title = Str::title(
+                str_replace('_', ' ', Str::snake(Str::singular($column)))
+            );
+            $col = sprintf($template, $column, $title, $column, $column, $column, $column);
             $attribute .= $this->indent($col, 3);
         }
 
