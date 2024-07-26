@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\RedirectResponse;
@@ -80,7 +81,7 @@ class StudlyDummiesController extends Controller
                 ]);
         $model = StudlyDummy::query()->create($data);
 
-        session()->flash('message', [
+        Session::flash('message', [
             'message' => "Create small title dummy {$model->id} success.",
             'type'    => 'success',
         ]);
@@ -113,7 +114,7 @@ class StudlyDummiesController extends Controller
                 ]);
         $camelDummy->fill($data)->save();
 
-        session()->flash('message', [
+        Session::flash('message', [
             'message' => 'Update small title dummy success.',
             'type'    => 'success',
         ]);
@@ -125,7 +126,7 @@ class StudlyDummiesController extends Controller
     {
         $camelDummy->delete();
 
-        session()->flash('message', [
+        Session::flash('message', [
             'message' => "delete small title dummy id {$camelDummy->id} success.",
             'type'    => 'success',
         ]);
@@ -142,7 +143,7 @@ class StudlyDummiesController extends Controller
         StudlyDummy::query()->whereIn('id', $request->ids)->delete();
 
         $idsString = collect($request->ids)->implode(',');
-        session()->flash('message', [
+        Session::flash('message', [
             'message' => "Bulk Delete small title dummy id {$idsString} success.",
             'type'    => 'success',
         ]);
