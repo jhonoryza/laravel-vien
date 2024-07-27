@@ -6,12 +6,18 @@ import TextInput from "@/Components/TextInput.vue";
 import { IconChevronRight } from "@tabler/icons-vue";
 import { Head } from "@inertiajs/vue3";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 const props = defineProps({
   camelDummy: {
     type: Object,
   },
 });
+
+const back = () => {
+  window.history.back();
+};
+
 </script>
 <template>
   <Head title="Big Title Dummy Detail" />
@@ -48,6 +54,7 @@ const props = defineProps({
               <PrimaryButton @click="$inertia.get(route('snake_dummies.edit', camelDummy.id))"
                 >Edit
               </PrimaryButton>
+              <SecondaryButton @click="back"> Back </SecondaryButton>
             </div>
           </div>
         </section>

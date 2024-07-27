@@ -86,6 +86,10 @@ class StudlyDummiesController extends Controller
             'type'    => 'success',
         ]);
 
+        if ($request->type == 'create-another') {
+            return redirect()->route('snake_dummies.create');
+        }
+
         return redirect()->route('snake_dummies.show', $model->id);
     }
 
