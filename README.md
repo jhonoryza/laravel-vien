@@ -67,6 +67,10 @@ composer require --dev jhonoryza/laravel-vien
 php artisan vien:install
 ```
 
+this will copy all vien component scaffolding
+
+after installed successfully you can remove this package from your dev requirement
+
 ### Optional to update vien components
 
 ```bash
@@ -117,10 +121,6 @@ php artisan vendor:publish --tag='vien-config'
 ```bash
 php artisan vendor:publish --tag='vien-stubs'
 ```
-
-this will copy all vien component scaffolding
-
-after installed successfully you can remove this package from your dev requirement
 
 ### Security
 
