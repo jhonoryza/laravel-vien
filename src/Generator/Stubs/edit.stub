@@ -9,14 +9,13 @@ import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 import { IconChevronRight } from "@tabler/icons-vue";
 import { Head } from "@inertiajs/vue3";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 const props = defineProps({
   camelDummy: {
     type: Object,
   },
 });
-
-const passwordInput = ref(null);
 
 const form = useForm({
 //UseForm Edit
@@ -28,6 +27,11 @@ const update = () => {
     onSuccess: () => form.reset(),
   });
 };
+
+const back = () => {
+  window.history.back();
+};
+
 </script>
 <template>
   <Head title="Edit Big Title Dummy" />
@@ -58,10 +62,10 @@ const update = () => {
             </div>
           </header>
 
-          <form @submit.prevent="update" class="mt-6 space-y-6">
+          <form @submit.prevent="" class="mt-6 space-y-6">
 //Edit Form
             <div class="flex items-center gap-4">
-              <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+              <PrimaryButton @click="update" :disabled="form.processing">Save</PrimaryButton>
 
               <Transition
                 enter-active-class="transition ease-in-out"
@@ -76,6 +80,9 @@ const update = () => {
                   Saved.
                 </p>
               </Transition>
+              <SecondaryButton @click="back" :disabled="form.processing">
+                Back
+              </SecondaryButton>
             </div>
           </form>
         </section>
