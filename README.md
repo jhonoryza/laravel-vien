@@ -20,12 +20,12 @@ No magic behind the scene, you can customize as much as you want
 ## Features
 
 - Table component with search, sort, filter, pagination, toggle, select and bulk action
+- Resource Generator to quickly generate CRUD
 - Toggle dark mode and light mode component
 - Responsive sidebar component
-- Resource Generator to quickly generate CRUD from your model
 - Flash message using toast component
 - Loading spinner component
-- SelectSimple component
+- [SelectSimple](./docs/select-simple.md) component
 - InputDateTime component using flatpickr
 - TextArea compoonent
 - Toggle switch component
