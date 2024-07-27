@@ -33,9 +33,8 @@ class UpdateCommand extends Command
         });
 
         // Components + Pages...
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components/Vien'));
-
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/inertia-vue/Vien', resource_path('js/Components/Vien'));
+        $exclude = ['menu-items.js'];
+        $this->copyDirectoryExcludingFiles(__DIR__ . '/../../stubs/inertia-vue/Vien', resource_path('js/Components/Vien'), $exclude);
 
         $this->components->info('Installing and building Node dependencies.');
 
@@ -51,5 +50,44 @@ class UpdateCommand extends Command
 
         $this->line('');
         $this->components->info('Vien components updated successfully.');
+    }
+
+    public function copyDirectoryExcludingFiles($source, $destination, $exclude = []): void
+    {
+        $filesystem = new Filesystem;
+
+        // Ensure destination directory exists
+        $filesystem->ensureDirectoryExists($destination);
+
+        // Get all files in the source directory
+        $files = $filesystem->allFiles($source);
+
+        // Filter out the files to be excluded
+        $filesToCopy = array_filter($files, function ($file) use ($exclude) {
+            foreach ($exclude as $excludedFile) {
+                if (str_contains($file->getPathname(), $excludedFile)) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
+
+        // Copy each remaining file to the destination
+        foreach ($filesToCopy as $file) {
+            $relativePath = str_replace($source, '', $file->getPathname());
+            $filesystem->copy($file->getPathname(), $destination . $relativePath);
+        }
+
+        // Get all directories in the source directory
+        $directories = $filesystem->directories($source);
+
+        // Create directories in the destination
+        foreach ($directories as $directory) {
+            $relativePath   = str_replace($source, '', $directory);
+            $newDestination = $destination . $relativePath;
+            $filesystem->ensureDirectoryExists($newDestination);
+            $this->copyDirectoryExcludingFiles($directory, $newDestination, $exclude);
+        }
     }
 }
